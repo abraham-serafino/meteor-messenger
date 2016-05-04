@@ -14,14 +14,17 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 
-  'Messages.add'(message) {
+  'Messages.add'(message, timestamp = moment().unix()) {
 
-    Messages.insert({
-      text: message,
-      username: Meteor.users.findOne(Meteor.userId()).profile.name,
-      userId: Meteor.userId(),
-      timestamp: moment().unix(),
-    });
+    let username = 'John Doe';
+    let userId = 9999999999;
+
+    if (!Meteor.isTest) {
+      username = Meteor.users.findOne(Meteor.userId()).profile.name;
+      userId = Meteor.userId();
+    }
+
+    Messages.insert({ text: message, username, userId, timestamp });
   },
 
 });

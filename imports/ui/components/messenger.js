@@ -4,7 +4,7 @@ import { Messages } from '../../models/messages.js';
 
 import './messenger.html';
 
-class Messenger {
+export class Messenger {
 
   constructor() {
     this.inputMessage = '';
