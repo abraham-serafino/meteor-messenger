@@ -1,0 +1,33 @@
+<template name="messengerView">
+
+  <div class="row">
+    <div class="input-field col s8">
+
+      <input id="message_input" type="text"
+        {{b "value: inputMessage, enter: addMessage, enable: userLoggedIn "}}/>
+
+      <label for="message_input">Enter your message</label>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="row">
+    <div class="col s10">
+
+      <div class="card-panel">
+        {{#each messages}}
+          <span {{b "visible: this.username, class: 'small-text'"}}>
+            {{username}} -
+          </span>
+
+          <span {{b "class: { 'italic-text': isOwnMessage(this), 'bold-text': !isOwnMessage(this) }"}}>
+            {{text}}<br/>
+          </span>
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+
+</template>
